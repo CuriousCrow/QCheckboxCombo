@@ -32,8 +32,6 @@ bool QCheckboxCombo::eventFilter(QObject * watched, QEvent * event)
 
 void QCheckboxCombo::hidePopup()
 {
-  qDebug() << "hidePopup";
-
   QStringList values;
   //Building resulting text as a list of checked items
   for (int i=0; i < count(); i++){
@@ -48,10 +46,11 @@ void QCheckboxCombo::hidePopup()
 
 void QCheckboxCombo::showPopup()
 {
-  qDebug() << "showPopup";
-
   //Setting "checked" property of items that contained in resulting text
   QStringList values = currentText().split(_delimiter);
+
+  emit beforeOpen();
+
   for (int i=0; i<count(); i++){
     setItemData(i, values.contains(itemText(i)), Qt::CheckStateRole);
   }

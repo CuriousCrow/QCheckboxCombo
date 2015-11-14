@@ -22,7 +22,8 @@ public:
 private:
   QString _delimiter = ",";
 signals:
-
+  //can be used to update items dynamically
+  void beforeOpen();
 public slots:
 
 };
