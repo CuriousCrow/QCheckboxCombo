@@ -16,10 +16,9 @@ bool QCheckboxCombo::eventFilter(QObject * watched, QEvent * event)
   // filtering only "MouseButtonRelease" event
   if (event->type() == QEvent::MouseButtonRelease)
   {
-    qDebug() << "QEvent::MouseButtonRelease";
 
     // find index of selected item
-    QModelIndex ind = view()->indexAt(((QMouseEvent*)event)->pos());
+    QModelIndex ind = view()->indexAt((static_cast<QMouseEvent*>(event))->pos());
     // get current item status
     bool checked = view()->model()->data(ind,Qt::CheckStateRole).toBool();
     // invert item status
